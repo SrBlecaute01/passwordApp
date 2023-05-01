@@ -2,7 +2,7 @@ import {StatusBar} from 'expo-status-bar';
 import {Modal, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {useState} from "react";
 import {object, string} from "yup";
-import RegistrationCard from "./src/components/RegistrationCard";
+import PasswordCard from "./src/components/PasswordCard";
 
 export default function App() {
     const [password, setPassword] = useState("")
@@ -21,7 +21,9 @@ export default function App() {
                 visible={modalVisible}
                 onShow={() => setTimeout(() => setModalVisible(false), 2000)}
                 onRequestClose={() => setModalVisible(!modalVisible)}>
-                <RegistrationCard result={result}/>
+                <PasswordCard
+                    result={result}
+                    password={password}/>
             </Modal>
 
             <View style={styles.password}>
@@ -34,12 +36,12 @@ export default function App() {
                     onChangeText={text => setPassword(text)}
                 />
 
-                <TouchableOpacity style={[styles.buttons, styles.registerButton]}
+                <TouchableOpacity style={styles.button}
                     onPress={() => {
                         setResult(schema.isValidSync({password: password}).valueOf())
                         setModalVisible(true)
                     }}>
-                    <Text style={styles.textStyle}>Cadastrar-se</Text>
+                    <Text style={styles.textStyle}>Mostrar Senha</Text>
                 </TouchableOpacity>
             </View>
 
@@ -74,18 +76,17 @@ const styles = StyleSheet.create({
         padding: 10,
     },
 
-    buttons: {
+    button: {
         padding: 10,
+        marginTop: '5%',
+
         shadowColor: '#000',
         shadowOffset: {width: 0, height: 2},
         shadowOpacity: 1,
         shadowRadius: 1,
         elevation: 5,
-    },
 
-    registerButton: {
         backgroundColor: 'rgb(55,122,248)',
-        marginTop: '5%',
-    },
+    }
 
 });

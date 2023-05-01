@@ -1,8 +1,8 @@
 import {Text, View} from "react-native";
 import {styles} from "./styles";
 
-export default function RegistrationCard({ result }) {
-    let text = result ? "Cadastrado com sucesso" : "Sua senha é muito pequena";
+export default function PasswordCard({ result, password }) {
+    let text = result ?  password : "Sua senha é muito pequena";
     let color = result ? '#66bb59' : '#cc6363';
 
     return (
